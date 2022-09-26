@@ -219,3 +219,61 @@ cc_library_shared {
     shared_libs: ["libavservices_minijail"],
     vendor: true,
 }
+
+cc_defaults {
+    name: "libgui_shim_defaults",
+    shared_libs: ["libutils"],
+    srcs: ["libgui/gui_shim.cpp"],
+}
+
+cc_library {
+    name: "libcutils_shim",
+    shared_libs: [
+        "libcutils",
+    ],
+    srcs: [
+        "libcutils/strdup16to8.cpp",
+        "libcutils/strdup8to16.cpp",
+    ],
+    vendor: true,
+}
+
+cc_library {
+    name: "libgui_shim",
+    defaults: ["libgui_shim_defaults"],
+    shared_libs: ["libgui"],
+    system_ext_specific: true,
+}
+
+cc_library {
+    name: "libgui_shim_vendor",
+    defaults: ["libgui_shim_defaults"],
+    shared_libs: ["libgui_vendor"],
+    vendor: true,
+}
+
+cc_library {
+    name: "libmemset_shim",
+    target: {
+        android_arm: {
+            srcs: ["libmemset/memset32.S"],
+            sanitize: {
+                misc_undefined: ["integer"],
+            },
+        },
+        android_arm64: {
+            srcs: ["libmemset/android_memset.S"],
+            sanitize: {
+                misc_undefined: ["integer"],
+            },
+        },
+    },
+    vendor: true,
+}
+
+cc_library_shared {
+    name: "libui_shim",
+    shared_libs: ["libui"],
+    srcs: ["libui/GraphicBuffer.cpp"],
+    compile_multilib: "64",
+}
