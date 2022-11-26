@@ -237,6 +237,13 @@ cc_library {
 }
 
 cc_library {
+    name: "libcamera_metadata_shim",
+    shared_libs: ["libcamera_metadata"],
+    srcs: ["libcamera_metadata/camera_metadata.cpp"],
+    vendor: true
+}
+
+cc_library {
     name: "libcutils_shim",
     shared_libs: [
         "libcutils",
@@ -294,6 +301,14 @@ cc_library_shared {
     srcs: [
         "libui/Fence.cpp",
         "libui/GraphicBuffer.cpp",
+    ],
+    vendor_available: true,
+}
+
+cc_library {
+    name: "libip_checksum_shim",
+    whole_static_libs: [
+        "libip_checksum",
     ],
     vendor_available: true,
 }
