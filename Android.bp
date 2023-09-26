@@ -201,6 +201,14 @@ cc_library_shared {
 }
 
 cc_library_shared {
+    name: "android.hardware.gnss@1.0_types",
+    srcs: ["interfaces/gnss/1.0/types.cpp"],
+    shared_libs: ["android.hardware.gnss@1.0"],
+    system_ext_specific: true,
+    vendor_available: true,
+}
+
+cc_library_shared {
     name: "android.hardware.graphics.common@1.0_types",
     srcs: ["interfaces/graphics/common/1.0/types.cpp"],
     shared_libs: ["android.hardware.graphics.common@1.0"],
@@ -259,6 +267,22 @@ cc_library {
         "libbinder/IServiceManager.cpp",
         "libbinder/PermissionCache.cpp",
     ],
+    vendor: true
+}
+
+cc_library {
+    name: "libc_mutexdestroy_shim",
+    shared_libs: ["libc"],
+    srcs: ["libc/pthread_mutex_destroy.cpp"],
+    sanitize: { never: true },
+    stl: "none",
+    vendor: true
+}
+
+cc_library {
+    name: "libc_pthreadts_shim",
+    shared_libs: ["libc"],
+    srcs: ["libc/pthread_cond_timedwait.cpp"],
     vendor: true
 }
 
@@ -353,9 +377,30 @@ cc_library {
 }
 
 cc_library_shared {
+    name: "libsensor_vendor",
+    srcs: [
+        "libsensor/Sensor.cpp",
+        "libsensor/SensorEventQueue.cpp",
+        "libsensor/SensorManager.cpp",
+    ],
+    shared_libs: [
+        "libsensorndkbridge",
+        "libutils",
+    ],
+    vendor: true,
+}
+
+cc_library_shared {
     name: "libtinyxml2_shim",
     srcs: ["libtinyxml2/XMLDocument.cpp"],
     shared_libs: ["libtinyxml2"],
     system_ext_specific: true,
     vendor_available: true,
+}
+
+cc_library_shared {
+    name: "libcomparetf2_shim",
+    srcs: ["libcomparetf2/comparetf2.c"],
+    compile_multilib: "64",
+    vendor: true,
 }
