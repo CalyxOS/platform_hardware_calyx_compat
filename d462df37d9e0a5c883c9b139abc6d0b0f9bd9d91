@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10a45e11_f7bc8207",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-11-14T14:22:30Z",
+      "side": 1,
+      "message": "Needed for Pixel 3/3a/4/4a",
+      "revId": "d462df37d9e0a5c883c9b139abc6d0b0f9bd9d91",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
