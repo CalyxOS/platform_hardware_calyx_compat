@@ -266,6 +266,13 @@ cc_defaults {
     ],
 }
 
+cc_library_shared {
+    name: "libaudioclient_shim",
+    shared_libs: ["libaudioclient", "libutils", "liblog"],
+    header_libs: ["libmedia_headers"],
+    srcs: ["libaudioclient/AudioTrack.cpp"],
+}
+
 cc_library {
     name: "libbase_shim",
     shared_libs: ["libbase"],
@@ -606,6 +613,14 @@ cc_library {
         "libip_checksum",
     ],
     vendor_available: true,
+}
+
+cc_library {
+    name: "libnativehelper_shim",
+    version_script: "libnativehelper/libnativehelper.map",
+    srcs: [
+        "libnativehelper/libnativehelper.cpp",
+    ],
 }
 
 cc_library_shared {
